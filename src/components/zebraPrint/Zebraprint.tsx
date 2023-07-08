@@ -72,7 +72,7 @@ const Zebraprint: React.FC<ZebraprintProps> = ({ data }) => {
   );
 };
 
-{/* <button className='buttonCss-2' type='button' onClick={handlePrintQRCode}>Imprimer QR Code</button> */}
+
 export default Zebraprint;
 
 
