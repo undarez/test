@@ -6,6 +6,16 @@ type CR1Placement = {
   // Propriétés de selectedLocation
 };
 
+type NumCopies = {
+  numCopies: number;
+  setNumCopies: React.Dispatch<React.SetStateAction<number>>
+}
+
+const CopiesContext = createContext<NumCopies>({
+  numCopies: 1,
+  setNumCopies: () =>{}
+})
+
 // Définition du type pour l'adresse IP
 type ipZebraPrint = {
   selectedIp: string;
@@ -51,6 +61,7 @@ export const UpdateProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [colorState, setColorState] = useState<string>('#000000');
   const [selectedLocation, setSelectedLocation] = useState<CR1Placement | undefined>(undefined);
   const [selectedIp, setSelectedIp] = useState<string>('');
+  const [numCopies, setNumCopies] = useState(1)
 
   return (
     <Context.Provider
@@ -70,9 +81,13 @@ export const UpdateProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       <IpContext.Provider value={{ selectedIp, setSelectedIp }}>
         {children}
       </IpContext.Provider>
+      <CopiesContext.Provider value={{numCopies, setNumCopies}}></CopiesContext.Provider>
     </Context.Provider>
   );
 };
 
 export const useUpdateContext = (): ContextType => useContext(Context);
 export const useIpContext = (): ipZebraPrint => useContext(IpContext);
+export const useNumCopies = (): NumCopies => useContext
+(CopiesContext);
+

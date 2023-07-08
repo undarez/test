@@ -11,7 +11,7 @@ import SelectedLocation, {
 import DataLocation from '../../JSON/Location.json';
 
 import Zebraprint from '../../components/zebraPrint/Zebraprint'
-
+import { useNumCopies } from '../../context/context';
 import './_home.scss';
 
 const Home = () => {
@@ -279,9 +279,9 @@ const Home = () => {
                         />
                         <p>{selectedLocation?.name || text}</p>
                         {/*  Les 3 lignes qui suivent servent a afficher dans un <p> le code quand il n'est pas undefined, juste pour vérifier (au pire tu l'enlève si ça te plait pas :P )  */}
-                        {selectedLocation !== undefined && (
+                        {/* {selectedLocation !== undefined && (
                               <p>{selectedLocation.name}</p>
-                        )}
+                        )} */}
                         {/*  Fin du morceau  */}
                         <div className="container-button">
                               <button
