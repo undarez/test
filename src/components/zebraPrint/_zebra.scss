@@ -2,37 +2,53 @@
 
 
 .container-button-2{
-            
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 320px;
-    gap: 20px;
-
-    .buttonCss-2 {
-        width: 400px;
-        height: 40px;
-        
-
-        font-size: 12px;
-        font-family: $police-input;
-        font-weight: 600;
-        border-radius: 40px;
+    width: 100%;
+    height: auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.4);
+    margin-bottom: 20px;
+    
+    .container-bloc-button{
+        width: 100%;
+        height: 66px;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        background: linear-gradient(145deg, #ffffff, #ffffff);
-        border: 1px solid #e8e8e8;
-        transition: all .3s;
-    //     box-shadow:  23px 23px 46px #b8b8b8,
-    //  -23px -23px 46px #fafafa;
-    }
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+        input{
+            width: 15%;
+            height: auto;
+            text-align: center;
 
-    .buttonCss-2:active {
-        color: #666;
-        box-shadow: inset 23px 23px 46px #e79e9e,
-    inset -23px -23px 46px #fafafa;
+            
+        }
+        .buttonCss-3 {
+            width: 120px;
+            height: 40px;
+            font-size: 12px;
+            font-family: $police-input;
+            font-weight: 600;
+            border-radius: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(145deg, #ffffff, #ffffff);
+            border: 1px solid #e8e8e8;
+            transition: all .3s;
+            box-shadow:  10px 10px 10px #7c7c7c,
+             -24px -24px 50px #ffffff;
+//             background: linear-gradient(145deg, #e8e8e8, #c3c3c3);
+// box-shadow:  24px 24px 48px #7c7c7c,
+//              -24px -24px 48px #ffffff;
+        }
+        
+        .buttonCss-3:active {
+            color: #666;
+            box-shadow: inset 23px 23px 46px #e79e9e,
+            inset -23px -23px 46px #fafafa;
+        }
     }
-
+        
 }
