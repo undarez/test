@@ -7,7 +7,13 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    .select-cursor-pointer{
+        font-size: 15px;
+        font-family: $police-input;
+        font-weight: 600;
+        cursor: pointer;
 
+    }
     h1{
         font-size: 45px;
         font-family: $police-titre;

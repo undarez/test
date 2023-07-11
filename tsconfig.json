@@ -16,5 +16,9 @@
             "noEmit": true,
             "jsx": "react-jsx"
       },
-      "include": ["./src/**/*.ts", "src/page/zebra/zebra.tsx"]
+      "include": [
+            "./src/**/*.ts",
+            "src/page/zebra/zebra.tsx",
+            "src/components/zebraPrint/SelectedIPPrint.tsx"
+      ]
 }

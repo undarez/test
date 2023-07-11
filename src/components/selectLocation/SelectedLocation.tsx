@@ -36,7 +36,7 @@ const SelectedLocation = ({
             <div className='container-location'>
                   <h1>Sélection d'un emplacement</h1>
                   <p>cela est optionnel vous avez la possibilité entre choisir un emplacement ou de créer votre propre QR-code/code-barre a vous de choisir</p>
-                  <select
+                  <select className='select-cursor-pointer'
                         value={selectedLocation?.Id}
                         onChange={handleLocationSelection}
                   >

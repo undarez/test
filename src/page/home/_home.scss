@@ -1,24 +1,7 @@
 @import'../../utils/typographies';
 body{
     background-color: #e0d8d8;
-//     animation: bgAnim 10s infinite alternate linear;
-// }
-// @keyframes bgAnim {
-//     0% {
-//         background-color: #EE6055;
-//     }
-//     25%{
-//         background-color: #eeC355;
-//     }
-//     50%{
-//         background-color: #8AFE76;
-//     }
-//     75%{
-//         background-color: #55D2EE;
-//     }
-//     100%{
-//         background-color: #EE55EE;
-//     }
+
 }
 .container-qrcode {
     display: flex;
@@ -107,8 +90,7 @@ body{
                 background: linear-gradient(145deg, #ffffff, #ffffff);
                 border: 1px solid #e8e8e8;
                 transition: all .3s;
-            //     box-shadow:  23px 23px 46px #b8b8b8,
-            //  -23px -23px 46px #fafafa;
+                cursor: pointer;
             }
 
             .buttonCss:active {
@@ -118,19 +100,15 @@ body{
             }
         }
         .container-button-2{
-            
             padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 320px;
             gap: 20px;
 
             .buttonCss-2 {
                 width: 400px;
                 height: 40px;
-                
-
                 font-size: 12px;
                 font-family: $police-input;
                 font-weight: 600;
@@ -141,8 +119,7 @@ body{
                 background: linear-gradient(145deg, #ffffff, #ffffff);
                 border: 1px solid #e8e8e8;
                 transition: all .3s;
-            //     box-shadow:  23px 23px 46px #b8b8b8,
-            //  -23px -23px 46px #fafafa;
+                cursor: pointer;
             }
 
             .buttonCss-2:active {

@@ -1,6 +1,5 @@
 import ZebraPrintBrowser from 'zebra-browser-print-wrapper';
 import { Device } from 'zebra-browser-print-wrapper/lib/types';
-import { selectedIPOptions } from './selectedIPPrint';
 import ZebraIPs from '../../JSON/ZebraIP.json';
 
 export const printWithZebra = async (

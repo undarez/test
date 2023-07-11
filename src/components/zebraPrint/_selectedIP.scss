@@ -1,0 +1,21 @@
+@import '../../utils/typographies';
+
+.container-select{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .selectIP{
+        width: 270px;
+        height: auto;
+        display: flex;
+        margin:20px;
+        border-radius: 20px;
+        font-family:$police-input;
+        font-size: 15px;
+        text-align: center;
+        cursor: pointer;
+        
+    }
+}

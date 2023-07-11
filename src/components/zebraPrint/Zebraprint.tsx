@@ -1,122 +1,103 @@
 import React, { useEffect } from 'react';
 import './_zebra.scss';
-import { useUpdateContext, useNumCopies } from '../../context/context';
-// import ZebraIPs from '../../JSON/ZebraIP.json';
-import SelectedLocation, {
-      CR1Placement,
-} from '../selectLocation/SelectedLocation';
+import { useUpdateContext, useNumCopies, useIPZebraContext } from '../../context/context';
+import SelectedIPPrint from '../zebraPrint/SelectedIPPrint';
 import { printWithZebra } from '../zebraPrint/printzebratest';
+import SelectedLocation, { CR1Placement } from '../selectLocation/SelectedLocation';
 
 interface ZebraprintProps {
-      data: CR1Placement | undefined;
+  data: CR1Placement | undefined;
 }
+
 const Zebraprint: React.FC<ZebraprintProps> = ({ data }) => {
-      const { selectedLocation, setSelectedLocation } = useUpdateContext();
-      console.log(data);
-      const { numCopies, setNumCopies } = useNumCopies();
-      const printerLocation = '';
-      useEffect(() => {
-            if (data && data.Id) {
-                  const location: CR1Placement = {
-                        Id: data.Id,
-                        name: data.name,
-                  };
-                  setSelectedLocation(location);
-            }
-            console.log(data?.name);
-      }, [data, setSelectedLocation]);
+  const { selectedLocation, setSelectedLocation } = useUpdateContext();
+  const { numCopies, setNumCopies } = useNumCopies();
+  const { IpAdress, setIpAdress } = useIPZebraContext();
+  const printerLocation = '';
 
-      const generateBarcodeData = (location: string) => {
-            // Générez les données du code à barres en utilisant l'emplacement
-            return location.replace(/-/g, '');
+  useEffect(() => {
+    if (data && data.Id) {
+      const location: CR1Placement = {
+        Id: data.Id,
+        name: data.name,
       };
+      setSelectedLocation(location);
+    }
+    console.log(data?.name);
+  }, [data, setSelectedLocation]);
 
-      const generateQRCodeData = (location: string) => {
-            // Générez les données du QR code en utilisant l'emplacement
-            return `https://example.com/location/${encodeURIComponent(
-                  location
-            )}`;
-      };
+  const generateBarcodeData = (location: string) => {
+    return location.replace(/-/g, '');
+  };
 
-      const handlePrintBarcode = async () => {
-            const barcodeData = generateBarcodeData(data?.name || '');
-            try {
-                  await printWithZebra(barcodeData, printerLocation, numCopies); // Appel de la fonction d'impression pour Zebra avec les données du code à barres
-                  console.log('Impression du code à barres réussie !');
-            } catch (error) {
-                  console.error(
-                        "Erreur lors de l'impression du code à barres :",
-                        error
-                  );
-            }
-      };
+  const generateQRCodeData = (location: string) => {
+    return `https://example.com/location/${encodeURIComponent(location)}`;
+  };
 
-      const handlePrintQRCode = async () => {
-            const qrCodeData = generateQRCodeData(data?.name || '');
+  const handlePrintBarcode = async () => {
+    const barcodeData = generateBarcodeData(data?.name || '');
+    try {
+      await printWithZebra(barcodeData, printerLocation, numCopies);
+      console.log('Impression du code à barres réussie !');
+    } catch (error) {
+      console.error("Erreur lors de l'impression du code à barres :", error);
+    }
+  };
 
-            try {
-                  await printWithZebra(qrCodeData, printerLocation, numCopies); // Appel de la fonction d'impression pour Zebra avec les données du QR code
-                  console.log('Impression du QR code réussie !');
-            } catch (error) {
-                  console.error(
-                        "Erreur lors de l'impression du QR code :",
-                        error
-                  );
-            }
-      };
+  const handlePrintQRCode = async () => {
+    const qrCodeData = generateQRCodeData(data?.name || '');
 
-      return (
-            <div className="container-button-2">
-                  {/* Bouton pour l'impression du code à barres */}
-                  <div className="container-bloc-button">
-                        <input
-                              type="number"
-                              value={numCopies}
-                              onChange={(e) =>
-                                    setNumCopies(Number(e.target.value))
-                              }
-                        />
-                        <button
-                              className="buttonCss-3"
-                              type="button"
-                              onClick={() => {
-                                    data?.name &&
-                                          printWithZebra(
-                                                data.name,
-                                                printerLocation,
-                                                numCopies
-                                          );
-                              }}
-                        >
-                              Imprimer Code à Barres
-                        </button>
-                        {/* <button className='buttonCss-2' type='button' onClick={handlePrintBarcode}>Imprimer Code à Barres</button> */}
+    try {
+      await printWithZebra(qrCodeData, printerLocation, numCopies);
+      console.log('Impression du QR code réussie !');
+    } catch (error) {
+      console.error("Erreur lors de l'impression du QR code :", error);
+    }
+  };
 
-                        {/* Bouton pour l'impression du QR code */}
-                        <input
-                              type="number"
-                              value={numCopies}
-                              onChange={(e) =>
-                                    setNumCopies(Number(e.target.value))
-                              }
-                        />
-                        <button
-                              className="buttonCss-3"
-                              type="button"
-                              onClick={() => {
-                                    data?.name &&
-                                          printWithZebra(
-                                                data.name,
-                                                printerLocation,
-                                                numCopies
-                                          );
-                              }}
-                        >
-                              Imprimer QR Code
-                        </button>
-                  </div>
-            </div>
-      );
+  return (
+    <div className="container-button-2">
+      <div className="container-bloc-button">
+        <div className='placement-button'>
+
+        <input
+          type="number"
+          onChange={(e) => setNumCopies(Number(e.target.value))}
+        />
+        <button
+          className="buttonCss-3"
+          type="button"
+          onClick={() => {
+            data?.name &&
+              printWithZebra(data.name, printerLocation, numCopies);
+          }}
+        >
+          Imprimer Code à Barres
+        </button>
+
+        <input
+        
+          type="number"
+          onChange={(e) => setNumCopies(Number(e.target.value))}
+        />
+        
+        <button
+          className="buttonCss-3"
+          type="button"
+          onClick={() => {
+            data?.name &&
+              printWithZebra(data.name, printerLocation, numCopies);
+          }}
+        >
+          Imprimer QR Code
+        </button>
+        </div>
+
+        <SelectedIPPrint setSelectedIp={setIpAdress} />
+
+      </div>
+    </div>
+  );
 };
 
 export default Zebraprint;

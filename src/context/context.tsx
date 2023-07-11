@@ -5,15 +5,28 @@ type CR1Placement = {
   name: string;
   // Propriétés de selectedLocation
 };
-
+//nombre de copies pour impression sur les zebra
 type NumCopies = {
   numCopies: number;
   setNumCopies: React.Dispatch<React.SetStateAction<number>>
 }
 
+
 const CopiesContext = createContext<NumCopies>({
   numCopies: 1,
   setNumCopies: () =>{}
+})
+
+//defenition de choix d'adresse Ip
+
+type ChoixIpZebra = {
+  IpAdress: string[];
+  setIpAdress: React.Dispatch<React.SetStateAction<string[]>>
+}
+
+const IPZebraContext = createContext<ChoixIpZebra>({
+  IpAdress : [],
+  setIpAdress: () => {}
 })
 
 // Définition du type pour l'adresse IP
@@ -54,6 +67,10 @@ const IpContext = createContext<ipZebraPrint>({
   setSelectedIp: () => {},
 });
 
+
+
+
+
 export const UpdateProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [text, settext] = useState<string>('example');
   const [sizeState, setsizeState] = useState<number>(180);
@@ -62,6 +79,7 @@ export const UpdateProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [selectedLocation, setSelectedLocation] = useState<CR1Placement | undefined>(undefined);
   const [selectedIp, setSelectedIp] = useState<string>('');
   const [numCopies, setNumCopies] = useState(1)
+  const [IpAdress, setIpAdress] = useState<string[]>([])
 
   return (
     <Context.Provider
@@ -82,12 +100,13 @@ export const UpdateProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         {children}
       </IpContext.Provider>
       <CopiesContext.Provider value={{numCopies, setNumCopies}}></CopiesContext.Provider>
+      <IPZebraContext.Provider value={{IpAdress,setIpAdress}}></IPZebraContext.Provider>
     </Context.Provider>
   );
 };
 
 export const useUpdateContext = (): ContextType => useContext(Context);
 export const useIpContext = (): ipZebraPrint => useContext(IpContext);
-export const useNumCopies = (): NumCopies => useContext
-(CopiesContext);
+export const useNumCopies = (): NumCopies => useContext (CopiesContext);
+export const useIPZebraContext = (): ChoixIpZebra => useContext(IPZebraContext)
 
